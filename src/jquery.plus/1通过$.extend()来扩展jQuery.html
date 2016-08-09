@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>通过$.extend()来扩展jQuery</title>
+</head>
+<body>
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.extend({
+            sayname: function (name) {
+                console.log(name?name:"hello");
+            },
+
+            logTime: function (message) {
+                var now = new Date(),
+                    y = now.getFullYear(),
+                    m = now.getMonth() + 1,
+                    d  = now.getDay(),
+                    h = now.getHours(),
+                    min = now.getMinutes(),
+                    s = now.getSeconds(),
+                    time = y+("-")+ m +("-") + d+(" ")+ h+(":")+min+(":")+s   ;
+                return time;
+            }
+        });
+
+        $.sayname();
+        var time = $.logTime("log is");
+        console.log("log is: " + time);
+
+    })
+
+
+
+</script>
+
+</body>
+</html>

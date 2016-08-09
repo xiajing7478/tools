@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>2通过$.fn 向jQuery添加新的方法</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul id="list">
+                    <li><a href="javascript:void(0);">我的微博</a></li>
+                    <li><a href="javascript:void(0);">我的微博</a></li>
+                    <li><a href="javascript:void(0);">我的微博</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <p>这是p标签不是a标签，我不会受影响</p>
+            </div>
+        </div>
+    </div>
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<!--<script src="../lib/jquery.bg.js"></script>-->
+<script src="../lib/jquery.obj.js"></script>
+<script type="text/javascript">
+
+    /**
+     * 基本格式
+     */
+//    $.fn.myPlugin = function() {
+//        //在这里面,this指的是用jQuery选中的元素
+//        //example :$('a'),则this=$('a')
+//        this.css('color', 'red');
+//    }
+
+
+//    var foo= function () {
+//
+//    }
+
+    $(function () {
+        //$('a').bgColor({'color':'#c1c1c1','fontSize':'20px','decoration':'none'});
+        //$('a').bgColor();
+
+        $("a").bgColor({
+            'color':'#c1c1c1',
+            'fontSize':'20px',
+            'decoration':'none'
+        });
+
+    });
+</script>
+
+</body>
+</html>

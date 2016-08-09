@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>now_day</title>
+</head>
+<body>
+
+
+<div>
+    今天是星期<span id="day"></span>
+</div>
+
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        var date = new Date();
+        var str = "日一二三四五六";
+        var arr=["日","一","二","三","四","五","六"];
+        console.log(arr[date.getDay()]);
+        console.log(str.charAt(date.getDay()));
+
+        $("#day").text(arr[date.getDay()]);
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>动画--过渡属性 transition-property</title>
+    <style type="text/css">
+
+
+        .wrap div{
+            margin: 30px auto;
+            background: green;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            -webkit-transition: all 1s ease 0.2s;
+            -moz-transition: all 1s ease 0.2s;
+            -ms-transition: all 1s ease 0.2s;
+            -o-transition: all 1s ease 0.2s;
+            transition: all 1s ease 0.2s;
+
+        }
+
+        .wrap div:hover{
+            width: 400px;
+            background: yellow;
+            height: 400px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <div></div>
+</div>
+
+</body>
+</html>

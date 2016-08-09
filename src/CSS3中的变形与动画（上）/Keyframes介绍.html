@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Keyframes介绍</title>
+    <style type="text/css">
+        @keyframes changeColor {
+            from{
+               background: red;
+            }
+            50%{
+                background: orange;
+            }
+            to{
+                background: green;
+            }
+        }
+
+        .wrap{
+            margin: 30px auto;
+            height: 200px;
+            width: 200px;
+            border: 1px solid red;
+
+        }
+
+        .wrap:hover{
+            animation: changeColor 5s ease 0.5s;
+            animation: changeColor 5s ease 0.5s;
+            animation: changeColor 5s ease 0.5s;
+            animation: changeColor 5s ease 0.5s;
+            animation: changeColor 5s ease 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+
+</div>
+</body>
+</html>

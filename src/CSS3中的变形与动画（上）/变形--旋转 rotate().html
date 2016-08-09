@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>变形--旋转 rotate()</title>
+    <style type="text/css">
+        .wrap{
+            height: 200px;
+            width: 200px;
+            border: 1px dotted #c1c1c1;
+            margin: 50px auto;
+        }
+        
+        .wrap div{
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background: green;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+        }
+
+        .wrap span{
+            line-height: 200px;
+            display:block;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <div><span>我不想旋转(^_^)</span></div>
+    </div>
+
+</body>
+</html>

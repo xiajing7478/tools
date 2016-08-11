@@ -3,8 +3,53 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>bankCard</title>
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style type="text/css">
+        #card_show{
+            background: #80c7ea;
+            /*padding: 1rem;*/
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
+    <div class="container" style="margin-top: 30px">
+        <div class="row">
+            <div class="col-xs-offset-2 col-xs-8">
+                <input type="text" placeholder="请输入银行卡号" id="bank_card" name="bank_card" class="form-control">
+                <div id="card_show"></div>
+            </div>
+        </div>
+    </div>
 
+
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#bank_card").on("keyup", function () {
+                var regular = /[^\d|.]/g;
+                if(regular.test($(this).val())){
+                    $(this).val($(this).val().replace(/[^\d|.]/g,''));
+                }
+                getFormatBankCard($(this).val().replace(/[^\d|.]/g,''));
+
+            });
+
+            function getFormatBankCard(card){
+                var $this = $("#card_show"),result="";
+                if(card.length>4){
+                    for(var i=0;i<card.length;i++){
+                        result+= card.charAt(i)+((i+1)%4 == 0?" ":"");
+                    }
+                }else{
+                    result = card;
+                }
+                $("#card_show").html(result);
+            }
+
+        })
+    </script>
 </body>
 </html>

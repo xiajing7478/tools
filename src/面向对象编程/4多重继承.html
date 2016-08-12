@@ -2,9 +2,41 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>4多重继承</title>
 </head>
 <body>
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        /**
+         * JavaScript不提供多重继承功能，即不允许一个对象同时继承多个对象。
+         * 但是，可以通过变通方法，实现这个功能。
+         */
+
+        function M1(){
+            this.hello ="hello";
+        };
+
+        function M2(){
+            this.world ="world";
+        };
+
+        function S(){
+            M1.call(this);
+            M2.call(this);
+        };
+
+        S.prototype = M1.prototype;
+
+
+        var s = new S();
+        console.log(s.hello);
+        console.log(s.world);
+
+    })
+</script>
 
 </body>
 </html>

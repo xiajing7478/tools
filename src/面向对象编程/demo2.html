@@ -2,9 +2,82 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>继承</title>
 </head>
 <body>
 
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+//        function Super(){
+//            this.sayName=function(name){
+//                console.log(name);
+//            }
+//        };
+//
+//
+//        function Sub(){
+//            Super.call(this);
+//            this.age = 18;
+//            this.sayName=function(name){
+//                console.log("hello " + name);
+//            }
+//        };
+//
+//        var sub = new Sub();
+//
+//        sub.sayName("i am sub............");
+
+
+        function Shape(){
+            this.x = 0;
+            this.y =0;
+//            this.move = function (x, y) {
+//                this.x = x*2;
+//                this.y = y*2;
+//                console.log('Shape moved.....'+this.x+','+this.y);
+//            };
+        };
+
+        Shape.prototype ={
+            move: function (x, y) {
+                this.x += x;
+                this.y += y;
+                console.log('Shape moved.....'+this.x+','+this.y);
+            }
+        };
+
+        function Rectangle(){
+            Shape.call(this);
+        };
+
+        //或者这么写
+//        function Rectangle(){
+//            this.base = Shape;
+//            this.base();
+//        }
+
+        //Rectangle.prototype = Shape.prototype;
+        // 这种写法会使子类的prototype覆盖父类的prototype
+        //应该使用下面这种方法，去创建
+        Rectangle.prototype = Object.create(Shape.prototype);
+//        console.log(Rectangle.prototype);
+//        console.log(Rectangle.constructor);
+//        console.log(Rectangle.prototype.constructor);
+//        console.log(Rectangle.constructor.prototype);
+        Rectangle.prototype.constructor =Rectangle;
+        var rect = new Rectangle();
+
+//        console.log(Rectangle.prototype);
+//        console.log(Rectangle.constructor);
+//        console.log(Rectangle.prototype.constructor);
+//        console.log(Rectangle.constructor.prototype);
+        rect.move(10,10);
+
+
+    })
+</script>
 </body>
 </html>

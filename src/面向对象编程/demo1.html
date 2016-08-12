@@ -2,9 +2,25 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>demo1</title>
 </head>
 <body>
+
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+    $(function () {
+        function Animail(){
+            this.price = 1000;
+            return 1000;
+        };
+        console.log((new Animail().price));
+        console.log((new Animail()) === 1000); //false
+    })
+</script>
 
 </body>
 </html>

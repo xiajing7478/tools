@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function Animal(name){
+            this.name = name;
+        };
+
+        Animal.prototype={
+            eatting : function () {
+                console.log(this.name + " eatting................");
+            },
+            sleeping: function () {
+                console.log(this.name + " sleeping................");
+            }
+        };
+
+        function Duck(name){
+            Animal.call(this,name);
+            this.swimming = function () {
+                console.log("duck is  swimming...........")
+            };
+        };
+
+
+        Duck.prototype = Object.create(Animal.prototype);
+        Duck.prototype.constructor = Duck;
+
+        var duck = new Duck("whiteDuck");
+        duck.eatting();
+        duck.swimming();
+        duck.sleeping();
+
+
+        var animal = new Animal("dog");
+        animal.eatting();
+
+
+    })
+</script>
+</body>
+</html>

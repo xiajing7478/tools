@@ -7,7 +7,6 @@
     <style type="text/css">
         #card_show{
             background: #80c7ea;
-            /*padding: 1rem;*/
             color: #fff;
             font-weight: bold;
             font-size: 20px;
@@ -32,13 +31,15 @@
                 var regular = /[^\d|.]/g;
                 if(regular.test($(this).val())){
                     $(this).val($(this).val().replace(/[^\d|.]/g,''));
+                }else{
+                    getFormatBankCard($(this).val().replace(/[^\d|.]/g,''));
                 }
-                getFormatBankCard($(this).val().replace(/[^\d|.]/g,''));
+
 
             });
 
             function getFormatBankCard(card){
-                var $this = $("#card_show"),result="";
+                var result="";
                 if(card.length>4){
                     for(var i=0;i<card.length;i++){
                         result+= card.charAt(i)+((i+1)%4 == 0?" ":"");

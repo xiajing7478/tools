@@ -16,6 +16,8 @@
          * 1基本的实现方法
          * 2模块写成一个对象
          * 3封装私有变量：构造函数的写法
+         * 4封装私有变量：立即执行函数的写法
+         * 5模块的放大模式
          */
 
         /**
@@ -27,8 +29,8 @@
          * 而且模块成员之间看不出直接关系。
          */
 
-        function m1(){};
-        function m2(){};
+//        function m1(){};
+//        function m2(){};
 
 
         /**
@@ -40,21 +42,134 @@
          * module1._count = 5;
          */
         
-        var module = new Object({
-            _count:0,
-            m1: function () {
-                
-            },
-            
-            m2: function () {
-                
-            }
-        })
+//        var module = new Object({
+//            _count:0,
+//            m1: function () {
+//
+//            },
+//
+//            m2: function () {
+//
+//            }
+//        })
 
 
         /**
          * 3.封装私有变量：构造函数的写法
+         * 缺点：将私有变量封装在构造函数中，违反了构造函数与实例对象相分离的原则。
+         * 并且，非常耗费内存。
          */
+//        function StringBuilder(){
+//            var buff=[];
+//
+//            this.add = function (str) {
+//                buff.push(str);
+//            };
+//
+//            this.print = function () {
+//                return buff.join("");
+//            }
+//        }
+//
+//        var s = new StringBuilder();
+//        s.add(1);
+//        s.add(11);
+//        s.add(111);
+//        //s.buff =[1,2,3]; //这样是不能给buff，这个变量只在函数StringBuilder内部起作用
+//        console.log(s.print());
+
+
+
+
+
+        //方法将私有变量放入实例对象中，好处是看上去更自然，
+        // 但是它的私有变量可以从外部读写，不是很安全。
+//        function stringBuilder(){
+//            this.buff=[];
+//        };
+//
+//        stringBuilder.prototype ={
+//           'add': function (str) {
+//                this.buff.push(str);
+//            },
+//
+//            'print': function () {
+//                return this.buff.join("");
+//            }
+//        };
+//
+//        var s = new stringBuilder();
+//        s.add(1);
+//        s.add(11);
+//        s.add(111);
+//        //s.buff =[1,2,3]; //可以直接修改buff，不太安全
+//        console.log(s.print());
+
+
+        /**
+         * 4.封装私有变量：立即执行函数的写法
+         * 下面面的module就是JavaScript模块的基本写法
+         */
+        var module=(function () {
+            var count =0;
+
+            var m1 = function () {
+                console.log("m1 is working..........");
+            };
+
+            var m2 = function () {
+                console.log("m2 is working..........");
+            };
+
+            return {
+                m1:m1,
+                m2:m2
+            };
+        })();
+
+
+        //上面的等价于
+//        var obj = a();
+//
+//         function a(){
+//            var count =0;
+//
+//            var m1 = function () {
+//                console.log("m1 is working..........");
+//            };
+//
+//            var m2 = function () {
+//                console.log("m2 is working..........");
+//            };
+//
+//            return {
+//                m1:m1,
+//                m2:m2
+//            };
+//        };
+
+        //console.log(module.count); //undefined
+
+
+        //var m = new module();
+        //obj.m1();
+        //console.log(obj.count);
+
+
+        /**
+         * 5.模块的放大模式
+         *
+         * 为module模块添加了一个新方法m3()，然后返回新的module模块。
+         */
+        var obj = (function (mod) {
+            mod.m3= function () {
+                console.log("m3 is working...................")
+            }
+        })(module);
+
+        module.m1();
+        module.m3();
+
 
 
     })

@@ -24,7 +24,7 @@
             -webkit-animation: round 5s linear 0.5s infinite;
             -o-animation: round 5s linear 0.5s infinite;
             animation: round 5s linear 0.5s infinite;
-            /*animation-play-state: paused;*/
+            animation-play-state: paused;
 
         }
 
@@ -80,7 +80,22 @@
 
 <div class="wrap">
     <div class="around"></div>
+
 </div>
 
+<div>
+    <input type="button" value="start" onclick="start()">
+    <input type="button" value="stop" onclick="stop()">
+</div>
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    function start(){
+        $('.around').css({'animation-play-state': 'running'});
+    }
+
+    function stop(){
+        $('.around').css({'animation-play-state': 'paused'});
+    }
+</script>
 </body>
 </html>

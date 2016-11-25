@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播效果</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        ul{list-style: none;}
+        .main{
+            width: 750px;
+            height: 300px;
+            margin: 25px auto;
+            position: relative;
+        }
+        .main .img{
+            height: 100%;
+            width: 100%;
+        }
+        .main .img li img{
+            width: 100%;
+            position: absolute;
+            height: 100%;
+        }
+
+        .num{
+            text-align: center;
+        }
+
+        .num li{
+            display: inline-block;
+            height: 25px;
+            width: 25px;
+            border-radius: 25px;
+            background: #cecece;
+            line-height: 25px;
+            margin: 0px 10px;
+        }
+        .main .btn{
+            position: absolute;
+            top: 125px;
+            height: 50px;
+            font-size: 20px;
+            line-height: 50px;
+            width: 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .main .left{
+            left: 0;
+        }
+        .main .right{
+            right: 0;
+        }
+
+        .main:hover .btn{
+            display: block;
+            opacity: 0.8;
+            cursor: pointer;
+            background: black;
+            color: white;
+        }
+
+        .num li.active{
+            background-color: red;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+<div class="main">
+    <ul class="img">
+        <li><a href="javascript:void(0);"><img src="../img/v_img1.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/v_img3.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/v_img2.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/v_img4.jpg"></a></li>
+    </ul>
+
+    <ul class="num"></ul>
+    <div class="btn left"><</div>
+    <div class="btn right">></div>
+</div>
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        <!--4738 5029  5411 5594 5923 6223-->
+        var size = $('.img>li').length,str = "",count=0;
+         for(var i=1; i<=size;i++){
+             str+="<li>"+i+"</li>";
+         }
+        $(".num").append(str);
+
+        $(".num li").eq(0).addClass("active");
+
+
+        $(".main .left").on("click", function () {
+            moveLeft();
+        });
+        $(".main .right").on("click", function () {
+            move();
+        });
+
+        var t=setInterval(move,1500);
+
+
+        function moveLeft(){
+            count --;
+            if(count == -1){
+                count = size -1;
+            }
+            $(".num li").eq(count).addClass("active").siblings().removeClass("active");
+            $(".img li").eq(count).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
+
+        }
+
+        $(".main").hover(function(){
+            clearInterval(t);
+        },function(){
+            t=setInterval(move,1500);
+        });
+
+
+
+        function move(){
+            count++;
+            if(count==size){
+                count=0;
+            }
+            $(".num li").eq(count).addClass("active").siblings().removeClass("active");
+            $(".img li").eq(count).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
+
+        }
+
+
+    })
+</script>
+</body>
+</html>

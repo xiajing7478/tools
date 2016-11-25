@@ -34,6 +34,14 @@
             /*animation-play-state: running;*/
         /*}*/
         
+        /*.around{*/
+            /*-webkit-transition: round 5s ease 0.5s;*/
+            /*-moz-transition: round 5s ease 0.5s;*/
+            /*-ms-transition: round 5s ease 0.5s;*/
+            /*-o-transition: round 5s ease 0.5s;*/
+            /*transition: round 5s ease 0.5s;*/
+        /*}*/
+        
         @keyframes round {
             from{
                 -webkit-transform: translateX(0px);
@@ -96,6 +104,197 @@
     function stop(){
         $('.around').css({'animation-play-state': 'paused'});
     }
+
+    function fun(n,o){
+        console.log(o);
+        return{
+            fun: function (m) {
+                return fun(m,n);
+            }
+        }
+    }
+
+//    var a = fun(0); //undefined
+//    a.fun(1); //0
+//    a.fun(2); //0
+//    a.fun(3); //0
+//    var b = fun(0).fun(1).fun(2).fun(3);
+//    var c = fun(0).fun(1);  c.fun(2);  c.fun(3);
+//
+//
+//    function CallLevel(){
+//        if(CallLevel.caller == null){
+//            console.log("CallLevel was called from the top level.");
+//        }else{
+//            console.log("CallLevel was called by another function:\n" + CallLevel.caller);
+//        }
+//    };
+//
+//    function funCaller(){
+//        CallLevel();
+//    };
+//
+////    http://blog.csdn.net/xxb2008/article/details/7862956
+//
+//    CallLevel();
+//    funCaller();
+
+
+
+//    function a(){
+//        b();
+//    }
+//    function b(){
+//        alert(arguments.callee === b);
+//        alert(a === b.caller);
+//        alert(arguments.callee.caller ===a);
+//    }
+//
+//    a();
+
+
+//    function calleeTest(){
+//        arguments.callee.say("Mr CT","hello");
+//    }
+//
+//    calleeTest.say = function (userName, value) {
+//        alert(userName + " say: " + value);
+//    }
+//
+//    function callerTest(){
+//        a();
+//        function a(){
+//            arguments.callee.caller.goodbye("Mr CT","Canca Torvals");
+//        }
+//
+////        (function () {
+////            arguments.callee.caller.goodbye("Mr CT","Canca Torvals");
+////        })()
+//    }
+//    callerTest.goodbye = function (userName, userName2) {
+//        alert(userName +" 向: "+ userName2+" 说再见.");
+//    }
+//
+//    calleeTest();
+//    callerTest();
+
+
+    //bind
+
+//    var obj1={
+//        num :5
+//    }
+//    var obj2={
+//        num:10
+//    }
+//
+//    function mulity(mult){
+//        console.log(this.num*mult);
+//    }
+//
+//    Function.prototype.bind = function (context) {
+//        var method = this;
+//        var temp = function () {
+//            return method.apply(context,arguments);
+//        }
+//
+//        return temp;
+//    }
+//
+//    var test = mulity.bind(obj1)(8);
+//
+////    mulity(obj1.num , 8);
+////    mulity(obj2.num , 8);
+    
+    
+    
+//    var wx={
+//        name:'小王',
+//        gender:"男",
+//        age:24,
+//        say: function () {
+//            alert(this.name + " , " + this.gender + " ,今年" + this.age);
+//        }
+//    }
+//
+//    var xh={
+//        name : "小红",
+//        gender : "女",
+//        age : 18
+//    }
+//    //wx.say();
+//
+//    //wx.say.call(xh);
+////        wx.say.apply(xh);
+//    wx.say.bind(xh)();
+//
+
+
+
+//    var obj1={num:5};
+//    var obj2={num:10};
+//
+//    function mulity(n){
+//        console.log(this.num * n);
+//    }
+//
+//    mulity.bind(obj1)(8);
+//    mulity.call(obj1,8);
+
+
+    function Animal(name){
+        this.name=name;
+        this.showName = function () {
+            console.log(this.name);
+        }
+    }
+
+    Animal.prototype.showAge = function () {
+        console.log("25.....");
+    }
+
+    function Cat(name){
+        this.name = name;
+    }
+
+    var cat = new Cat("white CAT");
+
+    var animal = new Animal();
+
+    //animal.showName();
+    animal.showName.call(cat,"black cat");
+    //var cat = new Cat("cat");
+    //cat.showAge();
+
+
+//    Cat.prototype = Animal.prototype;
+//    Cat.constructor = Cat;
+//    var cat = new Cat("s");
+//    cat.showAge();
+
+
+    //http://www.cnblogs.com/humin/p/4556820.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
 </script>
 </body>
 </html>

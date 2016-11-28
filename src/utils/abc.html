@@ -6,5 +6,36 @@
 </head>
 <body>
     <div>abcabc</div>
+    <script type="text/javascript">
+
+        function P(){};
+        var p = new P();
+
+        function C(){};
+        C.prototype = p;
+        var c = new C();
+        console.log(c.constructor === P);
+
+
+//        function Animal(name){
+//            this.name = name;
+//        }
+//        Animal.prototype.color ="white";
+//
+//        function Dog(){
+//
+//        }
+//
+//        Dog.prototype = new Animal("dog");
+//        Dog.prototype.constructor = Dog;
+//        var dog = new Dog();
+//
+//
+//        var cat1 = new Animal('大毛');
+//        var cat2 = new Animal('2毛');
+//        cat1.color="black";
+//        console.log(cat1.color);
+//        console.log(cat2.color);
+    </script>
 </body>
 </html>

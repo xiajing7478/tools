@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lazyLoading</title>
+    <style type="text/css">
+        .main{
+            width: 500px;
+            margin: 0px auto;
+        }
+        .main img{
+            width: 500px;
+            height: 500px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="t">
+    <!--返回该元素相对于其offsetParent顶部的距离，-->
+    <!--至于offsetParent，指的是距离该元素最近的定位元素，如下所示-->
+    <!--<div id="p">-->
+        <!--<a> <span id="c"></span> </a>-->
+    <!--</div>-->
+    <!--P为C的offsetParent，offsetTop则为C距离P顶部的距离-->
+</div>
+
+
+<div class="main">
+    <img data-src="../img/1.jpg">
+    <img data-src="../img/2.jpg">
+    <img data-src="../img/3.jpg">
+    <img data-src="../img/4.jpg">
+    <img data-src="../img/5.jpg">
+    <img data-src="../img/6.jpg">
+    <img data-src="../img/7.jpg">
+    <img data-src="../img/8.jpg">
+</div>
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+//        console.log($(window).height());
+//        console.log($(window).scrollTop());
+//        console.log("body:" + $("body").height());
+
+        console.log($(".main img").height());
+        var img = $(".main img");
+        var n = 0; //存储图片加载到的位置，避免每次都从第一张图片开始遍历
+        loadingData();
+        window.onscroll = loadingData;
+
+        function loadingData(){
+            var clientHeight = $(window).height();
+            var scrollTop = $(window).scrollTop();
+            for(var i=n; i<img.length; i++){
+                if(img[i].offsetTop  < clientHeight+scrollTop){
+                    if(img[i].src==""){
+                        img[i].src = img.eq(i).attr("data-src");
+                    }
+                    n = i + 1;
+                }else{
+                    return;
+                }
+            }
+        }
+
+    })
+</script>
+
+</body>
+</html>

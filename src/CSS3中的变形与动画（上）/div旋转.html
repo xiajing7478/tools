@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>css3 通过transform属性实现DIV元素的旋转</title>
+    <style type="text/css">
+        #change{
+            width: 200px;
+            height: 200px;
+            border-radius: 200px;
+        }
+        /*#change:hover{*/
+            /*-webkit-animation: changed 2s linear infinite;*/
+            /*-o-animation: changed 2s linear infinite;*/
+            /*animation: changed 2s linear infinite;*/
+        /*}*/
+
+        @keyframes changed {
+            0%{
+                transform: rotate(0deg);
+            }
+            50%{
+                transform: rotate(180deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+        .rote{
+            -webkit-animation: changed 2s linear infinite;
+            -o-animation: changed 2s linear infinite;
+            animation: changed 2s linear infinite;
+        }
+
+        .bgCss{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            transition: background 1s linear;
+        }
+
+
+        .bgCss:hover{
+            background: blue;
+        }
+        .demo{
+            background: yellow;
+            color: black;
+            width: 400px;
+            height: 200px;
+            -webkit-transition: all 3s linear;
+            -moz-transition: all 3s linear;
+            -ms-transition: all 3s linear;
+            -o-transition: all 3s linear;
+            transition: all 3s linear;
+        }
+        .demo:hover{
+            color: white;
+            width: 500px;
+            background: deepskyblue;
+        }
+
+        .anmi{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        
+        .anmi:hover{
+            -webkit-animation: anmit 10s linear ;
+            -o-animation: anmit 10s linear ;
+            animation: anmit 10s linear ;
+        }
+
+        @keyframes anmit {
+            0%{
+                background: deeppink;
+                -webkit-transform: rotate(0deg);
+            }
+            25%{
+                background: yellow;
+                -webkit-transform: rotate(90deg);
+            }
+            50%{
+                background: deepskyblue;
+                -webkit-transform: rotate(180deg);
+            }
+            75%{
+                background: blue;
+                -webkit-transform: rotate(270deg);
+            }
+            100%{
+                background: green;
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="test">
+        <img src="../img/v_img1.jpg" id="change">
+    </div>
+    <p>下面看一个例子来演示一下Transitions功能的动画效果，页面中一个div元素，背景色为黄色，
+    用过hover属性指定当鼠标指针停留在div元素上时背景色变为浅蓝色，通过transition属性指定：
+    当鼠标指针移动到div元素上时，在1s钟内div元素的背景色从黄色平滑过渡到浅蓝色。</p>
+    <div class="bgCss"></div>
+
+    <p> 一个div元素，背景色为黄色，字体颜色为黑色，宽度为400px，通过hover属性指定当鼠标指针停留在div元素上
+        时背景色变为浅蓝色，字体为白色，宽度 增加到500px。通过transition属性指定当鼠标指针移到到div元素上
+        时在1s钟的时间内完成这几个属性值的变化即平滑过渡。</p>
+    <div class="demo">demo</div>
+
+    <p>animation</p>
+    <div class="anmi">anmi</div>
+
+
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $("#change").on("click",function(){
+
+        if($(this).hasClass("rote")){
+            $("#change").removeClass("rote");
+        }else{
+            $("#change").addClass("rote");
+        }
+
+        //$("#change").css({'animation':'changed 2s linear infinite','background':"red"});
+    })
+</script>
+
+</body>
+</html>

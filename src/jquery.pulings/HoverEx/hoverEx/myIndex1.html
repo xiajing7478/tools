@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片悬停动画效果</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <style type="text/css">
+        body{margin: 0 auto;width: 1200px !important;margin-top: 40px;}
+        .m_left{
+            display: inline-block;
+            position: relative;
+            height: 267px;
+            margin: 15px;
+        }
+        .header{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+            visibility: visible;
+        }
+        /*.headerShow{*/
+        /*visibility: visible;*/
+        /*}*/
+
+        .content{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            background: rgba(0,0,0,0.5);
+            text-align: center;
+            color: white;
+            -webkit-transition: all 1.1s;
+            -moz-transition: all 1.1s;
+            -ms-transition: all 1.1s;
+            -o-transition: all 1.1s;
+            transition: all 1.1s;
+            -webkit-transform: translateY(-100%);
+            -moz-transform: translateY(-100%);
+            -ms-transform: translateY(-100%);
+            -o-transform: translateY(-100%);
+            transform: translateY(-100%);
+        }
+
+        .contentWidth{
+            -webkit-transform: translateY(0%);
+            -moz-transform: translateY(0%);
+            -ms-transform: translateY(0%);
+            -o-transform: translateY(0%);
+            transform: translateY(0%);
+        }
+
+
+    </style>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+<div class="clearfix">
+    <div class="m_left demo">
+        <img src="./img/1.jpg">
+        <div class="header">
+            <div class="content">
+                this is test
+            </div>
+        </div>
+    </div>
+
+    <div class="m_left demo">
+        <img src="./img/2.jpg">
+        <div class="header">
+            <div class="content">
+                this is test two
+            </div>
+        </div>
+    </div>
+
+    <div class="m_left demo">
+        <img src="./img/3.jpg">
+        <div class="header">
+            <div class="content">
+                this is test three
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".demo").mouseenter(function () {
+            $(this).find('.content').addClass('contentWidth');
+        }).mouseleave(function () {
+            $(this).find('.content').removeClass('contentWidth');
+        })
+    })
+</script>
+</body>
+</html>

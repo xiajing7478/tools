@@ -2,45 +2,200 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>拖拽</title>
+    <title>drag</title>
     <link href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
     <style type="text/css">
-        body{
-            width: 1200px;
-            margin: 50px auto;
-            padding: 0;
-        }
-        ul{
-            padding-left: 0px;
-            list-style: none;
-        }
+        .container{width: 1200px !important; margin: 50px auto;}
+        ul{padding: 0;list-style: none;border: 1px solid #ccc;min-height: 400px;}
         ul>li{
-            margin: 15px;
-            padding: 10px;
+            margin: 10px;
+            color: #fff;
+            background: darkgreen;
+            line-height: 40px;
+            height: 40px;
             text-align: center;
-            background: #EED2EE;
-            color: white;
-        }
-        .col-md-3{
-            border: 1px solid #c1c1c1;
-            min-height: 350px;
         }
     </style>
 </head>
 <body>
+
+
+<div class="container">
     <div class="row clearfix">
-        <div class="col-md-3">
-            <ul>
+        <div class="col-md-offset-2 col-md-4">
+            <ul class="left">
                 <li>A</li>
                 <li>B</li>
                 <li>C</li>
                 <li>D</li>
                 <li>E</li>
                 <li>F</li>
+                <li>G</li>
             </ul>
         </div>
-        <div class="col-md-offset-1 col-md-3"></div>
+        <div class="col-md-offset-1 col-md-4">
+            <ul class="right">
+            </ul>
+        </div>
     </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        drag.init('container');
+    });
+
+    var drag={
+        className :null,
+        permitDrag : false,	//是否允许移动标识
+
+        _x:0,
+        _y:0,
+        _left:0,
+        _top:0,
+
+        oldElement:null, //拖拽原节点
+        tmpElement :null, //跟随光标移动的临时节点
+        newElement:null, //拖拽完成后添加的新节点
+
+        init: function (className) {
+            drag.className = className;
+            //监听鼠标按下事件，动态绑定要拖拽的节点
+            $('.'+drag.className).on('mousedown','ul li', function () {
+                drag.permitDrag = true;
+                drag.oldElement = $(this);
+                drag.mousedown(event);
+                return false;
+            });
+
+            //监听鼠标移动
+            $(document).mousemove(function (event) {
+                if(drag.permitDrag)
+                    return false;
+                drag.mousemove(event);
+                return false;
+            });
+
+            //监听鼠标放开
+            $(document).mouseup(function (event) {
+                if(!drag.permitDrag)
+                    return false;
+                //拖拽结束后恢复标识到初始状态
+                drag.permitDrag  = false;
+                drag.mouseup(event);
+                return false;
+            })
+
+        },
+
+        //移动鼠标 执行的操作
+        mousemove: function (event) {
+            //1.计算坐标
+            var e = event || window.event;
+            var x  = e.pageX - drag._left;
+            var y = e.pageY - drag._top;
+
+            var maxL = $(document).width() - $(drag.oldElement).outerWidth();
+            var maxT = $(document).height() - $(drag.oldElement).outerHeight();
+
+            //不允许超出浏览器范围
+            x = x<0?0:x;
+            x = x>maxL?maxL:x;
+            y = y<0?0:y;
+            y = y>maxT?maxT:y;
+            //2.修改克隆节点的坐标
+            $(drag.tmpElement).css({
+                'left':x,
+                'top':y
+            });
+
+            //判断当前容器是否允许放置节点
+            $.each($("."+drag.className+' ul'), function (index, value) {
+                //获取容器的坐标范围 (区域)
+                var box_x = $(value).offset().left;     //容器左上角x坐标
+                var box_y = $(value).offset().top;      //容器左上角y坐标
+                var box_width = $(value).outerWidth();  //容器宽
+                var box_height = $(value).outerHeight();//容器高
+
+                //给可以放置的容器加背景色
+                if(e.pageX > box_x && e.pageX < box_x-0+box_width && e.pageY > box_y && e.pageY < box_y-0+box_height){
+
+                    //判断是否不在原来的容器下（使用坐标进行判断：x、y任意一个坐标不等于原坐标，则表示不是原来的容器）
+                    if($(value).offset().left !== drag.oldElement.parent().offset().left
+                            || $(value).offset().top !== drag.oldElement.parent().offset().top){
+
+                        $(value).css('background-color', '#FFEFD5');
+                    }
+                }else{
+                    //恢复容器原背景色
+                    $(value).css('background-color', '#FFFFF0');
+                }
+            });
+        },
+
+        mousedown:function(event){
+            drag.tmpElement = drag.oldElement.clone();
+
+            drag._x =$(drag.oldElement).offset().left;
+            drag._y = $(drag.oldElement).offset().top;
+
+            var e = event || window.event;
+
+            drag._left = e.pageX - drag._x;
+            drag._top = e.pageY - drag._y;
+
+            $(drag.tmpElement).css({
+                'position':'absolute',
+                'background':'#FF8C69',
+                'width':'100%',
+                'left':drag._x,
+                'top':drag._y
+            });
+
+            //增加临时节点
+            tmp = $(drag.oldElement).parent().append(drag.tmpElement);
+            drag.tmpElement = $(tmp).find(drag.tmpElement);
+            $(drag.tmpElement).css('cursor','move');
+        },
+
+        //放开鼠标 执行的操作
+        mouseup: function (event) {
+            //移除临时节点
+            $(drag.tmpElement).remove();
+
+            //判断所在区域是否允许放置节点
+            var e = event || window.event;
+
+            $.each($('.' + drag.class_name + ' ul'), function(index, value){
+
+                //获取容器的坐标范围 (区域)
+                var box_x = $(value).offset().left;     //容器左上角x坐标
+                var box_y = $(value).offset().top;      //容器左上角y坐标
+                var box_width = $(value).outerWidth();  //容器宽
+                var box_height = $(value).outerHeight();//容器高
+
+                //判断放开鼠标位置是否想允许放置的容器范围内
+                if(e.pageX > box_x && e.pageX < box_x-0+box_width && e.pageY > box_y && e.pageY < box_y-0+box_height){
+
+                    //判断是否不在原来的容器下（使用坐标进行判断：x、y任意一个坐标不等于原坐标，则表示不是原来的容器）
+                    if($(value).offset().left !== drag.oldElement.parent().offset().left
+                            || $(value).offset().top !== drag.oldElement.parent().offset().top){
+                        //向目标容器添加节点并删除原节点
+                        tmp = $(drag.oldElement).clone();
+                        var newObj = $(value).append(tmp);
+                        $(drag.oldElement).remove();
+                        //获取新添加节点的对象
+                        drag.newElement = $(newObj).find(tmp);
+                    }
+                }
+                //恢复容器原背景色
+                $(value).css('background-color', '#FFFFF0');
+            });
+        }
+    }
+
+</script>
+
 </body>
 </html>

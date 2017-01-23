@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>筛选</title>
+    <style type="text/css">
+        .container{margin: 50px auto; width: 800px;}
+        dd{padding: 0;margin: 0;}
+        dl{overflow: hidden;}
+        dt,dd{float: left;display: inline-block;    padding: 8px;
+            width: 80px;
+            line-height: 30px;
+            height: 30px;text-align: center;}
+        .selected{background: orange;color: #fff;}
+        #selOptions dd:hover{
+            background: #f6383a;color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="selOptions">
+            <dl>
+                <dt>AAA:</dt>
+                <dd data-class="AAA">a1</dd>
+                <dd data-class="AAA">a2</dd>
+                <dd data-class="AAA">a3</dd>
+                <dd data-class="AAA">a4</dd>
+                <dd data-class="AAA">a5</dd>
+            </dl>
+            <dl>
+                <dt>BBB:</dt>
+                <dd data-class="BBB">b1</dd>
+                <dd data-class="BBB">b2</dd>
+                <dd data-class="BBB">b3</dd>
+                <dd data-class="BBB">b4</dd>
+                <dd data-class="BBB">b5</dd>
+            </dl>
+            <dl>
+                <dt>CCC:</dt>
+                <dd data-class="CCC">c1</dd>
+                <dd data-class="CCC">c2</dd>
+                <dd data-class="CCC">c3</dd>
+                <dd data-class="CCC">c4</dd>
+                <dd data-class="CCC">c5</dd>
+            </dl>
+        </div>
+        <div id="result">
+            <dl>
+                <dt>已选条件:</dt>
+            </dl>
+        </div>
+    </div>
+
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            demo.init();
+        });
+
+        var demo={
+            tmp:null,
+            class:null,
+            addTmp:null,
+            init: function () {
+                var that = this;
+                $('#selOptions>dl dd').on("click", function () {
+                    $(this).removeClass('active');
+                    that.tmp = $(this).clone(),that.class=$(this).attr("data-class");
+                    $(this).siblings().removeClass('selected').end().addClass('selected');
+                    that.addNode();
+                });
+
+                $("#result>dl").on("click","dd", function () {
+                    that.addTmp = $(this).attr("data-class");
+                    $.each($("#selOptions>dl dd"), function (index, value) {
+                        if($(this).attr("data-class") == that.addTmp){
+                            $(this).removeClass('selected');
+                        }
+                    })
+                    $(this).remove();
+                });
+            },
+            addNode: function () {
+                if($("#result>dl dd").length == 0){
+                    $("#result dl").append(this.tmp);
+                }else{
+                    var that = this;
+                    $.each($("#result>dl dd"), function (index, value) {
+                        if($(this).attr("data-class") == that.class){
+                            $(this).remove();
+                        }
+                    })
+                    $("#result dl").append(this.tmp);
+                }
+            },
+
+            clearSelect: function () {
+                $("#selOptions  dd").removeClass('selected');
+                $("#result dd").remove();
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>

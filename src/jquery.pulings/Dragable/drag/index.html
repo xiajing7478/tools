@@ -197,14 +197,14 @@ var drag = {
             var box_y = $(value).offset().top;      //容器左上角y坐标
             var box_width = $(value).outerWidth();  //容器宽
             var box_height = $(value).outerHeight();//容器高
-            
+
             //给可以放置的容器加背景色
             if(e.pageX > box_x && e.pageX < box_x-0+box_width && e.pageY > box_y && e.pageY < box_y-0+box_height){
 
                 //判断是否不在原来的容器下（使用坐标进行判断：x、y任意一个坐标不等于原坐标，则表示不是原来的容器）
-                if($(value).offset().left !== drag.old_elm.parent().offset().left 
+                if($(value).offset().left !== drag.old_elm.parent().offset().left
                 || $(value).offset().top !== drag.old_elm.parent().offset().top){
-                    
+
                     $(value).css('background-color', '#FFEFD5');
                 }
             }else{
@@ -233,12 +233,12 @@ var drag = {
             var box_y = $(value).offset().top;      //容器左上角y坐标
             var box_width = $(value).outerWidth();  //容器宽
             var box_height = $(value).outerHeight();//容器高
-            
+
             //判断放开鼠标位置是否想允许放置的容器范围内
             if(e.pageX > box_x && e.pageX < box_x-0+box_width && e.pageY > box_y && e.pageY < box_y-0+box_height){
 
                 //判断是否不在原来的容器下（使用坐标进行判断：x、y任意一个坐标不等于原坐标，则表示不是原来的容器）
-                if($(value).offset().left !== drag.old_elm.parent().offset().left 
+                if($(value).offset().left !== drag.old_elm.parent().offset().left
                 || $(value).offset().top !== drag.old_elm.parent().offset().top){
                     //向目标容器添加节点并删除原节点
                     tmp = $(drag.old_elm).clone();

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>select 控件</title>
+    <link href="FancySelect-master/fancySelect.css" rel="stylesheet">
+    <style type="text/css">
+        .contanier{
+            width: 800px;
+            margin: 50px auto;
+        }
+
+
+        ul{list-style: none;padding: 0;}
+        ul>li{padding: 0;margin: 0;}
+
+        .menu{
+            height: 32px;
+            line-height: 32px;
+            width: 150px;
+        }
+
+        .down{
+            width: 0;
+            height: 0;
+            border-top: 10px solid green;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+
+        .contanier div.fancy-select ul.options{
+            top: 36px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="contanier">
+        <select class="basic">
+            <option value="">Select something…</option>
+            <option>Lorem</option>
+            <option>Ipsum</option>
+            <option>Dolor</option>
+            <option>Sit</option>
+            <option>Amet</option>
+        </select>
+    </div>
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="FancySelect-master/fancySelect.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.basic').fancySelect();
+        })
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Select插件</title>
+    <style type="text/css">
+        .container{
+            width: 800px;
+            margin: 50px auto;
+        }
+
+
+        .container>div{
+            margin: 15px;
+        }
+        .rect{
+            height: 0px;
+            width: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid red;
+            transition: transform 0.4s linear;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+
+        }
+
+        .rect:hover{
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+
+        .up{
+            height: 0;
+            width: 0;
+            border-bottom: 100px solid red;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+        }
+
+        .left{
+            height: 0;
+            width: 0;
+            border-right: 100px solid red;
+            border-bottom: 50px solid transparent;
+            border-top: 50px solid transparent;
+        }
+
+        .right{
+            height: 0;
+            width: 0;
+            border-top: 50px solid transparent;
+            border-bottom: 50px solid transparent;
+            border-left: 100px solid red;
+        }
+
+
+    </style>
+</head>
+<body>
+<!--http://www.jq22.com/yanshi10219-->
+
+
+<div class="container">
+    <div class="rect"></div>
+
+    <div class="up"></div>
+
+    <div class="left"></div>
+
+
+    <div class="right"></div>
+</div>
+
+
+
+</body>
+</html>

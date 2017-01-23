@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>筛选</title>
+    <style type="text/css">
+        .container{margin: 50px auto; width: 1000px;}
+        #selOptions .record{padding: 15px;}
+        #selOptions span{padding: 8px;display: inline-block;width: 120px;text-align: center;}
+        #selOptions .tt:hover{background: #f6383a; color: #fff;}
+        /*#result{text-align: center;}*/
+
+
+        .m_hide{display: none;}
+        .sel{padding: 15px;position: relative;display: inline-block;}
+        .m_css{
+            position: absolute;
+            width: 213px;
+            border: 1px solid #c1c1c1;
+            height: 40px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="selOptions">
+        <div class="record">
+            <span>AAA:</span>
+            <span class="tt" data-class="AAA">a1</span>
+            <span class="tt" data-class="AAA">a2</span>
+            <span class="tt" data-class="AAA">a3</span>
+            <span class="tt" data-class="AAA">a4</span>
+            <span class="tt" data-class="AAA">a5</span>
+        </div>
+        <div class="record">
+            <span>BBB:</span>
+            <span class="tt" data-class="BBB">b1</span>
+            <span class="tt" data-class="BBB">b2</span>
+            <span class="tt" data-class="BBB">b3</span>
+            <span class="tt" data-class="BBB">b4</span>
+            <span class="tt" data-class="BBB">b5</span>
+        </div>
+        <div class="record">
+            <span>CCC:</span>
+            <span class="tt" data-class="CCC">c1</span>
+            <span class="tt" data-class="CCC">c2</span>
+            <span class="tt" data-class="CCC">c3</span>
+            <span class="tt" data-class="CCC">c4</span>
+            <span class="tt" data-class="CCC">c5</span>
+        </div>
+    </div>
+    <div id="result">
+        <span>已选条件:</span>
+    </div>
+</div>
+
+<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.record').on("click",'span', function () {
+            var _tmp = $(this).parent().clone();
+            var _title = $(this).attr('data-class');
+            var _txt = $(this).text();
+            $(this).parent().hide();
+            addNode(_tmp,_title,_txt);
+        });
+
+        function addNode(_tmp,_title, _txt){
+            var _str = '<span class="sel">'+_title+':'+'<span class="txt" >'+_txt+'</span>'
+                            +'<span>x</span>'+
+                    '<div class="m_css m_hide">'+$(_tmp).html()+'</div></span>';
+            $('#result').append(_str);
+        }
+
+
+        $('#result').on("click",'.sel',function () {
+            $(this).siblings().find('.m_css').addClass('m_hide');
+            $(this).find('.m_css').removeClass('m_hide');
+        })
+
+        $("#result").on("click",".m_css>.tt", function (event) {
+            $(this).parent().parent().find(".txt").text($(this).text());
+            console.log($(this).parent());
+            $(this).parent().addClass('m_hide');
+            return false;
+        })
+    });
+</script>
+
+</body>
+</html>

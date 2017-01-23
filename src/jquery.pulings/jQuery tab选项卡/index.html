@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery tab选项卡</title>
+    <style type="text/css">
+        .container{
+            margin: 50px auto;
+            width: 1000px !important;
+        }
+
+
+        ul{list-style: none;padding:0px;margin: 0px;}
+
+        .table_card ul{
+            border-bottom: 1px #e1e1e1 solid;
+            height: 37px;
+        }
+
+        .table_card .clearfix:after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+
+        .table_card .active{
+             background: #fff !important;
+             height: 37px ;
+        }
+
+        .table_card ul>li{
+            float: left;
+            padding: 0px 20px;
+            background: #f0f0f0;
+            border-top: 1px #e1e1e1 solid;
+            border-left: 1px #e1e1e1 solid;
+            height: 36px;
+            line-height: 36px;
+            border-right: 1px #e1e1e1 solid;
+        }
+
+        .table_card li+li{
+            margin-left:8px;;
+        }
+
+        .table_card ul>li:hover{
+            background: #fff;
+        }
+
+        .m_hide{
+            display: none;;
+        }
+
+        .table_content{
+            background: #fff;
+            padding: 15px;
+            border-bottom: 1px #e1e1e1 solid;
+            border-left: 1px #e1e1e1 solid;
+            border-right: 1px #e1e1e1 solid;
+        }
+
+        .table_content li{
+            padding: 10px 3px;
+        }
+
+
+        .table_content .time{
+            float: right;
+            padding-right: 100px;
+        }
+
+        .table_content a{
+            text-decoration: none;
+            color: #333;
+        }
+
+        .table_content a:hover{
+            color: orange;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="table_card">
+            <ul class="clearfix">
+                <li class="active">最新</li>
+                <li>热门</li>
+                <li>新闻</li>
+            </ul>
+        </div>
+        <div class="table_content">
+            <div>
+                <ul class="newslist01">
+                    <li><a href="#"><span>【前端】</span>iframe实现关闭当前窗口效果<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【前端】</span>div透明边框的设置及ie兼容<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【福利】</span>你是我的好朋友，我要送你个天猫红包<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【活动】</span>蚂蚁金服开放平台合作伙伴大会(北京8.10)<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>融云即时通讯云－豆果美食、Faceu等亿级APP都在用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                </ul>
+            </div>
+            <div class="m_hide">
+                <ul class="newslist01 ">
+                    <li><a href="#"><span>【前端】</span>OpenBSD 6.0将移除Linux子系统以改进安全<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【前端】</span>Facebook计划在旧金山设立首个办公室<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【福利】</span>雅虎也“死”了 互联网到了谈论基业长青的年代<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【活动】</span>乐视回应“1分钱买会员后自动续费”：将赠送一年会员<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>高德开放平台发布AMAP Inside战略 服务神州租车等30万移动应用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                </ul>
+            </div>
+            <div class="m_hide">
+                <ul class="newslist01 ">
+                    <li><a href="#"><span>【前端】</span>可是姑娘，你为什么要编程呢？<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【前端】</span>知其所以然（以算法学习为例）<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【福利】</span>如何给变量取个简短且无歧义的名字<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【活动】</span>写给初学前端工程师的一封信<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>融云即时通讯云－豆果美食、Faceu等亿级APP都在用<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                    <li><a href="#"><span>【推荐】</span>50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<span class="ding">【置顶】</span></a><span class="time">2016-07-17</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".table_card").on("click","li", function () {
+
+                $(this).addClass('active').siblings().removeClass('active');
+                $('.table_content div').addClass('m_hide').eq($(this).index()).removeClass('m_hide');
+
+            })
+        })
+    </script>
+
+
+</body>
+</html>

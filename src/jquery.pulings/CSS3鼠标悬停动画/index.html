@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CSS3鼠标悬停动画</title>
+</head>
+<body>
+<style type="text/css">
+    .container{
+        width: 1000px;
+        margin: 50px auto;
+    }
+    ul{list-style: none;float: left;padding: 0;}
+
+    .first{
+        border-color: green;
+        background: #4d9683;
+    }
+
+    .sec{
+        border-color: green;
+        background: #be607e;
+    }
+
+    .third{
+        border-color: green;
+        background: #4d9683;
+    }
+
+    .four{
+        border-color: green;
+        background: #4d9683;
+    }
+
+    .four{
+        border-color: green;
+        background: #4d9683;
+    }
+
+
+    ul li:hover{
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+
+    li>span{
+        height: 50px;
+        line-height: 50px;
+        width: 50px;
+    }
+
+    ul>li{float: left;
+        height: 100px;
+        width: 100px;
+        line-height: 100px;
+        text-align: center;
+        border-radius: 1000px;
+        border: 7px solid;
+        margin-right: 15px;
+        -webkit-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+        -ms-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        transition: all 0.4s;
+
+    }
+
+    ul li:hover span {
+        transition: all 0.4s linear;
+        animation: moveFromBottom 0.3s ease;
+    }
+
+    @keyframes moveFromBottom {
+        from {
+            transform: translateY(120%) scale(5);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0%) scale(10);
+            opacity: 1;
+        }
+    }
+
+</style>
+<div class="container">
+
+    <ul>
+        <li class="first"><span>Home</span></li>
+        <li class="sec"><span>Phone</span></li>
+        <li class="third"><span>Wifi</span></li>
+        <li class="four"><span>Setting</span></li>
+        <li class="four"><span>Twitter</span></li>
+    </ul>
+
+
+
+</div>
+
+
+
+<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+    })
+</script>
+</body>
+</html>

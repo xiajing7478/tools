@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .dice_box {
+            position: relative;
+            width: 100px;
+            height: 150px;
+            transform: perspective(300px);
+            transform-style: preserve-3d;
+            margin: 50px;
+        }
+        .dice {
+            cursor: pointer;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            transition: all .3s cubic-bezier(.01,.98,.99,.99);
+            transform-style: preserve-3d;
+            transform: rotateX(-36deg) rotateY(231deg) rotateZ(0deg);
+        }
+        .dice span {
+            display: block;
+            position: absolute;
+            width: inherit;
+            height: inherit;
+            line-height: inherit;
+            text-align: center;
+            background: #f4f4f4;
+            border: 4px solid #F1E7D3;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            transform-style: preserve-3d;
+            background-image: radial-gradient(farthest-corner ellipse, #FFFFFF, #F5EFE2);
+        }
+        .dice :nth-child(1) {
+            transform: rotateY(0deg) translateZ(50px);
+        }
+        .dice :nth-child(2) {
+            transform: rotateY(180deg) translateZ(50px);
+        }
+        .dice :nth-child(3) {
+            transform: rotateY(90deg) translateZ(50px);
+        }
+        .dice :nth-child(4) {
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+        .dice :nth-child(5) {
+            transform: rotateX(90deg) translateZ(50px);
+        }
+        .dice :nth-child(6) {
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+
+        .dice span:before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -10px;
+            border-radius: 100px;
+            background-color: #333;
+        }
+        .dice :nth-child(1):before {
+            background-color: #B70000;
+            width: 28px;
+            height: 28px;
+            margin-top: -14px;
+            margin-left: -14px;
+        }
+        .dice :nth-child(2):before {
+            box-shadow: 40px 40px #333;
+            margin-top: -30px;
+            margin-left: -30px;
+        }
+        .dice :nth-child(3):before {
+            box-shadow: -20px -20px #333, 20px 20px #333;
+        }
+        .dice :nth-child(4):before {
+            box-shadow: 0 38px #333, 38px 0 #333, 38px 38px #333;
+            margin-top: -29px;
+            margin-left: -29px;
+        }
+        .dice :nth-child(5):before {
+            box-shadow: -20px -20px #333, -20px 20px #333,
+            20px -20px #333, 20px 20px #333;
+        }
+        .dice :nth-child(6):before {
+            box-shadow: 0 25px #333, 0 -25px #333,
+            36px 0 #333, 36px 25px #333, 36px -25px #333;
+            margin-left: -28px;
+        }
+        .dice span:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: inherit;
+            height: inherit;
+            top: 0;
+            left: 0;
+            background: #F1E7D3;
+            border-radius: 100px;
+            transform: translateZ(-1px) scale(.92);
+        }
+        .dice_box .dice_num {
+            position: absolute;
+            width: 20px;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #9D9682;
+            color: #fff;
+            font-size: 12px;
+            line-height: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="dice_box">
+    <div class="dice">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="dice_num"></div>
+</div>
+
+<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+    var dice_event = "transitionend";
+    if(typeof document.body.style.webkitTransition==="string"){
+        dice_event = "webkitTransitionEnd";
+    }
+
+    $(".dice").on("click", function(){
+
+        var tmp_dice_num = Math.floor(Math.random()*6) + 1;
+        var tmp_dice_x,
+                tmp_dice_y,
+                tmp_dice_z,
+                tmp_dice_x_dev,
+                tmp_dice_y_dev,
+                tmp_dice_z_dev;
+
+        switch( tmp_dice_num ) {
+            case 1:
+                if( Math.floor(Math.random()*2) ) {
+                    tmp_dice_x = 0;
+                    tmp_dice_y = 0;
+                } else {
+                    tmp_dice_x = 180;
+                    tmp_dice_y = 180;
+                }
+                tmp_dice_z_dev = tmp_dice_z = Math.floor(Math.random()*361);
+                tmp_dice_x_dev = tmp_dice_x + Math.floor(Math.random()*30);
+                tmp_dice_y_dev = tmp_dice_y + Math.floor(Math.random()*30);
+                break;
+            case 2:
+                if( Math.floor(Math.random()*2) ) {
+                    tmp_dice_x = 0;
+                    tmp_dice_y = 180;
+                } else {
+                    tmp_dice_x = 180;
+                    tmp_dice_y = 0;
+                }
+                tmp_dice_z_dev = tmp_dice_z = Math.floor(Math.random()*361);
+                tmp_dice_x_dev = tmp_dice_x + Math.floor(Math.random()*30);
+                tmp_dice_y_dev = tmp_dice_y + Math.floor(Math.random()*30);
+                break;
+            case 3:
+                if( Math.floor(Math.random()*2) ) {
+                    tmp_dice_x = 90;
+                    tmp_dice_z = 90;
+                } else {
+                    tmp_dice_x = 270;
+                    tmp_dice_z = 270;
+                }
+                tmp_dice_y_dev = tmp_dice_y = Math.floor(Math.random()*361);
+                tmp_dice_x_dev = tmp_dice_x + Math.floor(Math.random()*30);
+                tmp_dice_z_dev = tmp_dice_z + Math.floor(Math.random()*30);
+                break;
+            case 4:
+                if( Math.floor(Math.random()*2) ) {
+                    tmp_dice_x = 90;
+                    tmp_dice_z = 270;
+                } else {
+                    tmp_dice_x = 270;
+                    tmp_dice_z = 90;
+                }
+                tmp_dice_y_dev = tmp_dice_y = Math.floor(Math.random()*361);
+                tmp_dice_x_dev = tmp_dice_x + Math.floor(Math.random()*30);
+                tmp_dice_z_dev = tmp_dice_z + Math.floor(Math.random()*30);
+                break;
+            case 5:
+                if( Math.floor(Math.random()*2) ) {
+                    tmp_dice_x = 90;
+                    tmp_dice_z = 180;
+                } else {
+                    tmp_dice_x = 270;
+                    tmp_dice_z = 0;
+                }
+                tmp_dice_y_dev = tmp_dice_y = Math.floor(Math.random()*361);
+                tmp_dice_x_dev = tmp_dice_x + Math.floor(Math.random()*30);
+                tmp_dice_z_dev = tmp_dice_z + Math.floor(Math.random()*30);
+                break;
+            case 6:
+                if( Math.floor(Math.random()*2) ) {
+                    tmp_dice_x = 90;
+                    tmp_dice_z = 0;
+                } else {
+                    tmp_dice_x = 270;
+                    tmp_dice_z = 180;
+                }
+                tmp_dice_y_dev = tmp_dice_y = Math.floor(Math.random()*361);
+                tmp_dice_x_dev = tmp_dice_x + Math.floor(Math.random()*30);
+                tmp_dice_z_dev = tmp_dice_z + Math.floor(Math.random()*30);
+                break;
+        }
+
+        $(this).css( "transform", "rotateX(" + tmp_dice_x + "deg) rotateY(" + tmp_dice_y + "deg) rotateZ(" + tmp_dice_z + "deg)");
+
+        $(this).on(dice_event + ".dice", function(){
+            $(this).off( ".dice" );
+            $(".dice_box .dice_num").html( tmp_dice_num );
+
+        });
+
+    });
+
+</script>
+</body>
+</html>

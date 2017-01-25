@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .container{
+            width: 1200px;
+            height: 600px;
+            margin: 50px auto;
+            border: 1px solid yellow;
+            position: relative;
+        }
+        .demo{
+            height: 50px;
+            width: 50px;
+            line-height: 50px;
+            border-radius: 50px;
+            border: 1px solid red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="demo">test</div>
+</div>
+<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.demo').drag();
+    });
+    
+    $.fn.drag = function () {
+        var $this = $(this);
+        var parent = $this.parent();
+
+        var pWidth = parent.width(); //父窗口的宽度
+        var pHeight = parent.height();//父窗口高度
+
+        var thisWidth = $this.outerWidth(),
+            thisHeight = $this.outerHeight();
+
+        var x, y,posX,posY,isDown = false;
+
+        parent.css({
+            "position": "relative",
+            "overflow": "hidden"
+        });
+
+
+        $this.css({
+            "cursor": "move",
+            "position": "absolute",
+            "top":$this.position().top,
+            "left":$this.position().left
+        }).mousedown(function (e) {
+            isDown = true;
+
+            x = e.pageX;
+            y = e.pageY;
+
+            posX = $this.position().left;
+            posY = $this.position().top;
+            return false;
+        })
+
+
+        $(document).mouseup(function (e) {
+            isDown = false;
+        }).mousemove(function (e) {
+            var pageX = e.pageX;
+            var moveX = posX + pageX -x;
+            var pageY = e.pageY;
+            var moveY = posY+pageY-y;
+            if(isDown){
+                $(this).css({
+                    'left':moveX,
+                    'top':moveY
+                });
+            }else{
+                return;
+            }
+
+            if(moveX<0){
+                $(this).css({
+                    'left':0
+                });
+            }
+
+            if(moveX > (pWidth - thisWidth)){
+             $(this).css({
+                 'left':pWidth - thisWidth
+             });
+            }
+
+            if(moveY<0){
+                $(this).css({
+                    'top':0
+                });
+            }
+            if(moveY>(pHeight- thisHeight)){
+                $this.css({
+                    "top": pHeight - thisHeight
+                });
+            }
+        })
+    };
+</script>
+</body>
+</html>

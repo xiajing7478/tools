@@ -70,11 +70,20 @@
 
     var t = new Student('xj',23,'class2');
 
+
     t.hi();
 
     console.log(t.legs_num);
     t.walk();
     t.learn('math');
+
+
+    //by the way百度JS面试器
+    var a = {n: 1};
+    var b = a;
+    a.x = a = {n: 2};
+    console.log(a.x); //undefined
+    console.log(b.x) //{n:2}
 
 </script>
 </body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>数组</title>
+</head>
+<body>
+<script type="text/javascript">
+    var arr = [1, true, null, undefined, {x : 1}, [1, 2, 3]];
+    //用delete删除的方式，最终数组长度任然不会改变。只是把删除的元素改成undefined
+    delete arr[0];
+    arr[0]; // undefined
+
+    //二维数组
+    var _arr =[[0, 1], [2, 3], [4, 5]];
+    var row;
+    for(var i=0;i<_arr.length;i++){
+        row = _arr[i];
+        console.log("row "+i);
+        for(var j=0;j<row.length; j++){
+            console.log(row[j]);
+        }
+    }
+
+    /**
+     * 数组方法
+     * 1.join:把数组中的所有元素放入一个字符串,元素是通过指定的分隔符进行分隔的
+     * 2.reverse():颠倒数组中元素的顺序,该方法会改变原来的数组，而不会创建新的数组。
+     * 3.sort() 方法用于对数组的元素进行排序,原数组会被修改。
+     * 4.concat() 方法用于连接两个或多个数组,该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。
+     * 5.slice() 方法可从已有的数组中返回选定的元素,原数组未被修改。
+     * 6.splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目,该方法会改变原始数组。
+     */
+
+    var arr=[1,2,3];
+    console.log(arr.join());//'1,2,3'
+    console.log(arr.join('_'));//'1_2_3'
+
+    var arr1 =[1, 2, 3, 4, 5];
+    arr1.slice(1,3);//[2,3],从索引1开始，不包括索引3
+    arr1.slice(1, -1);//[2,3,4]
+    arr1.slice(-4, -3);//[2]
+
+    arr1.splice(2); //returns[3,4,5],arr1=[1,2]
+    arr1.splice(1, 1, 'a', 'b'); // returns [2]
+    arr1; // [1, "a", "b", 3, 4, 5]
+
+
+
+
+
+</script>
+</body>
+</html>

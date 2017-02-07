@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>数据类型</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    /**
+     * 1.数据类型
+     * number
+     * boolean
+     * string
+     * null
+     * undefined
+     * object
+     *
+     * 其中object包括function,array,Date,Reg...
+     *
+     *
+     * 2.类型坚持有以下几种
+     * typeof
+     * typeof它会返回一个字符串，非常适合函数对象和基本类型的判断
+     * instanceof
+     * Object.prototype.toString
+     * constructor
+     * duck type
+     *
+     *
+     */
+
+
+    /**
+     * typeof 返回一个字符串
+     */
+    console.log(typeof 100); //"number"
+    console.log(typeof  true); //"boolean"
+    console.log(typeof function () {}); //"function"
+    console.log(typeof undefined); //"undefined"
+    console.log(typeof new Object()); //"object"
+    console.log(typeof [1,2]); //"object"
+    console.log(typeof NaN); //"number"
+    console.log(typeof  null); //"object"
+
+    /**
+     * 判断对象类型的话，常用obj instanceof Object
+     */
+    console.log([1,2] instanceof Array); //true
+    console.log(new Object() instanceof Array); //false
+    function person(){};
+    function student(){};
+    student.prototype = new person();
+    var boss = new student();
+    console.log(boss  instanceof  student); //true
+    var one = new person();
+    console.log(one instanceof  person); //true
+    console.log(boss instanceof  person); //true
+</script>
+</body>
+</html>

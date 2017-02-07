@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>OOP面向对象编程(上)</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    /**
+     * oop的特性：
+     * 1.继承
+     * 2.封装
+     * 3.多态
+     * 4.抽象
+     */
+
+    //基于原型的继承
+    //使用函数声明去中创建一个函数的时候，这个函数就会有一个prototype属性，
+    // 并且他默认会有两个属性。
+    //一个是constructor:Foo constructor属性会指向它本身Foo。
+    //另外一个属性是__proto__，__proto__是Foo.prototype的原型，
+    // 那么他的原型会指向Object.prototype
+    function Foo(){
+        this.y = 2;
+    }
+    Foo.prototype.x=1;
+    console.log(Foo.prototype); //object
+    var obj1 = new Foo();
+    console.log(obj1.y); //2
+    console.log(obj1.x); //1
+
+
+    //实现class继承另外一个class
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    };
+
+    Person.prototype.hi= function () {
+        console.log('Hi my name is '+ this.name+
+                " ,I am "+this.age+" years old now");
+    };
+
+    Person.prototype.legs_num = 2;
+    Person.prototype.arms_num = 2;
+    Person.prototype.walk = function () {
+        console.log(this.name+ " is walking....");
+    };
+
+    function Student(name,age,className){
+        Person.call(this,name,age);
+        this.className = className;
+    };
+
+    Student.prototype = Object.create(Person.prototype);
+    Student.prototype.constructor = Student;
+
+    Student.prototype.hi= function () {
+        console.log('Hi my name is '+ this.name+" ,I am "+ this.age
+                +" years old,and form "+ this.className);
+    };
+    Student.prototype.learn = function (subject) {
+        console.log(this.name +" is learning "+
+                subject + " at "+ this.className);
+    };
+
+    console.log(Student.prototype);
+
+    var t = new Student('xj',23,'class2');
+
+    t.hi();
+
+    console.log(t.legs_num);
+    t.walk();
+    t.learn('math');
+
+</script>
+</body>
+</html>

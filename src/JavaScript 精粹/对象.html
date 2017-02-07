@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>对象</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 对象
+     */
+
+    //object
+    //var obj={};
+    //obj.x = 1;
+    //obj['y'] = 2;
+    //console.log(JSON.stringify(obj));
+
+    //function 每一个函数都会有一个foo.prototype对象属性
+    //function foo(){};
+    //foo.prototype.z=1;
+    //console.log(foo.prototype);
+
+    //什么是原型链
+    function foo(){};
+    foo.prototype.z = 3;
+    var obj = new foo();
+    obj.x =1;
+    obj.y =2;
+
+    console.log(obj.x);//1,访问obj.x发现对象上有x返回1
+    console.log(obj.y);//2,访问obj.x发现对象上有y返回2
+
+    console.log(obj.z);//3,obj上没有z并不会停止查找，会去查找他的原型foo.prototype.z返回3
+    console.log('z' in obj);//true,obj.z是从foo.prototype继承而来的，所以说obj里面有z
+    console.log(obj.hasOwnProperty('z'));//false,表示z并不是obj直接对象上的，而是对象原型链上的。
+
+    obj.z = 5;
+    console.log(obj.hasOwnProperty('z')); //true
+    console.log(foo.prototype.z); //3
+    console.log(obj.z); //5
+
+    //假如把obj.z赋值为undefined
+    obj.z = undefined;
+    console.log(obj.z); //undefined
+    //那么怎样能拿到原型链上的z呢
+    delete  obj.z;
+    console.log(obj.z);//3
+
+    //对象创建-Object.create
+    var test = Object.create({
+        'x':1
+    });
+    console.log(test);
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

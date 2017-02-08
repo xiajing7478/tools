@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>JS继承的几种方式</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    function Animal(name){
+        this.name = name || "animal";
+        this.sleep = function () {
+            console.log(this.name+" 正在睡觉...");
+        }
+    }
+
+    Animal.prototype.eat = function (food) {
+        console.log(this.name +" 正在吃 "+ food);
+    };
+
+    /**
+     * 方式1.原型链继承
+     * 核心：把父类的实例作为子类的原型
+     *
+     * 特点：
+     * 1.非常纯粹的继承关系，实例时子类的实例，也是父类的实例
+     * 2.父类新增的原型方法和属性，子类都能访问
+     * 3.简单，易于实现
+     *
+     * 缺点：
+     * 1.无法实现多继承
+     * 2.创建子类实例时，无法向父类构造函数传参
+     * 3.来自原型对象的引用属性是所有实例对象共享的
+     * 4.子类增加属性和方法时，必须要在new Animal()这样的语句之后，不能放在构造器中
+     *
+     * 总结:推荐指数**，2和3是致命缺陷
+     */
+    //    function Cat(){}
+    //    Cat.prototype = new Animal();
+    //    Cat.prototype.constructor = Cat;
+    //    Cat.prototype.name = "cat";
+    //
+    //    //testCode
+    //    var cat = new Cat();
+    //    console.log(cat.name);
+    //    cat.eat('fish');
+    //    cat.sleep();
+    //    console.log(cat instanceof Animal); //true
+    //    console.log(cat instanceof Cat); //true
+
+    /**
+     * 方式2.构造继承
+     * 核心：使用父类的构造函数来增强子类的实例，等于赋值父类的实例属性给子类(没有用到原型)
+     *
+     * 特点：
+     * 1.解决方式1中，子类实例共享父类引用属性的问题
+     * 2.创建子类实例时，可以向父类传递参数
+     * 3.可以实现多重继承（call多个父类对象）
+     *
+     * 缺点：
+     * 1.实例只是子类的实例，不是父类的实例
+     * 2.只能继承父类实例的属性和方法，不能继承原型的属性和方法
+     * 3.无法复用函数，每个子类都是父类实例的复本，影响性能
+     *
+     * 推荐指数：**，缺点3致命
+     */
+    //    function Cat(name){
+    //        Animal.call(this);
+    //        this.name = name || 'cat';
+    //    };
+    //
+    //    //testCode
+    //    var cat = new Cat('caaat');
+    //    console.log(cat.name);
+    //    cat.sleep();
+    //    console.log(cat instanceof Animal);
+    //    console.log(cat instanceof Cat);
+    //    cat.eat();
+
+
+    /**
+     * 方式3.组合继承
+     * 核心：通过调用父类构造函数，继承父类的属性并保留传参的优点，然后通过父类的实例作为子类的原型，实现函数复用
+     *
+     * 特点：
+     * 1.弥补方式2的缺陷，可以继承实例的属性和方法，也可以继承原型的属性和方法
+     * 2.既是子类的实例，也是父类的实例
+     * 3.不存在引用属性共享的问题
+     * 4.可以传参数
+     * 5.函数的复用
+     *
+     * 缺点：
+     * 1调用了2次父类的构造函数，生成的2份实例（子类实例将子类原型上的那份屏蔽了）
+     * 推荐指数：****（仅仅多消耗一点内存）
+     */
+    function Cat(name){
+        Animal.call(this);
+        this.name = name || "cat";
+    };
+
+    Cat.prototype = new Animal();
+    //testCode
+    var cat = new Cat();
+    console.log(cat.name);
+    cat.sleep();
+    console.log(cat instanceof Animal);
+    console.log(cat instanceof Cat);
+    cat.eat('fish');
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -75,10 +75,10 @@
 
 <div class="main">
     <ul class="img">
-        <li><a href="javascript:void(0);"><img src="../img/v_img1.jpg"></a></li>
-        <li><a href="javascript:void(0);"><img src="../img/v_img3.jpg"></a></li>
-        <li><a href="javascript:void(0);"><img src="../img/v_img2.jpg"></a></li>
-        <li><a href="javascript:void(0);"><img src="../img/v_img4.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/1.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/2.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/3.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../img/4.jpg"></a></li>
     </ul>
 
     <ul class="num"></ul>
@@ -89,53 +89,52 @@
 <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        <!--4738 5029  5411 5594 5923 6223-->
-        var size = $('.img>li').length,str = "",count=0;
-         for(var i=1; i<=size;i++){
-             str+="<li>"+i+"</li>";
-         }
-        $(".num").append(str);
-
-        $(".num li").eq(0).addClass("active");
-
-
-        $(".main .left").on("click", function () {
-            moveLeft();
-        });
-        $(".main .right").on("click", function () {
-            move();
-        });
-
-        var t=setInterval(move,1500);
-
-
-        function moveLeft(){
-            count --;
-            if(count == -1){
-                count = size -1;
-            }
-            $(".num li").eq(count).addClass("active").siblings().removeClass("active");
-            $(".img li").eq(count).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
-
-        }
-
-        $(".main").hover(function(){
-            clearInterval(t);
-        },function(){
-            t=setInterval(move,1500);
-        });
-
-
-
-        function move(){
-            count++;
-            if(count==size){
-                count=0;
-            }
-            $(".num li").eq(count).addClass("active").siblings().removeClass("active");
-            $(".img li").eq(count).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
-
-        }
+//        var size = $('.img>li').length,str = "",count=0;
+//         for(var i=1; i<=size;i++){
+//             str+="<li>"+i+"</li>";
+//         }
+//        $(".num").append(str);
+//
+//        $(".num li").eq(0).addClass("active");
+//
+//
+//        $(".main .left").on("click", function () {
+//            moveLeft();
+//        });
+//        $(".main .right").on("click", function () {
+//            move();
+//        });
+//
+//        var t=setInterval(move,3000);
+//
+//
+//        function moveLeft(){
+//            count --;
+//            if(count == -1){
+//                count = size -1;
+//            }
+//            $(".num li").eq(count).addClass("active").siblings().removeClass("active");
+//            $(".img li").eq(count).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
+//
+//        }
+//
+//        $(".main").hover(function(){
+//            clearInterval(t);
+//        },function(){
+//            t=setInterval(move,3000);
+//        });
+//
+//
+//
+//        function move(){
+//            count++;
+//            if(count==size){
+//                count=0;
+//            }
+//            $(".num li").eq(count).addClass("active").siblings().removeClass("active");
+//            $(".img li").eq(count).stop().fadeIn(1000).siblings().stop().fadeOut(1000);
+//
+//        }
 
 
     })

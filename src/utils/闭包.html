@@ -28,7 +28,7 @@
 <script type="text/javascript">
     $(function () {
 
-        //init();
+        init();
 
         function init(){
             var pAry = document.getElementsByTagName("p");
@@ -37,11 +37,10 @@
 //                pAry[i].onclick =function () {
 //                    alert(i);
 //                }
-
                 (function (i) {
-                   pAry[i].onclick = function () {
-                       alert(i);
-                   }
+                    pAry[i].onclick = function () {
+                        alert(i+1);
+                    }
                 })(i);
             }
         }

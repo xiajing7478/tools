@@ -28,7 +28,7 @@
 </div>
 
 
-<div class="main">
+<div id="main" class="main">
     <img data-src="../img/1.jpg">
     <img data-src="../img/2.jpg">
     <img data-src="../img/3.jpg">
@@ -47,6 +47,7 @@
 //        console.log("body:" + $("body").height());
 
         console.log($(".main img").height());
+        console.log(document.getElementsByTagName('img')[0].clientHeight);
         var img = $(".main img");
         var n = 0; //存储图片加载到的位置，避免每次都从第一张图片开始遍历
         loadingData();

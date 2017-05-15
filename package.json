@@ -13,9 +13,6 @@
   "author": "xiajing",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "jquery": "^3.1.0",
-    "jquery-validation": "^1.15.1",
-    "layui": "0.0.1"
+    "jquery": "^3.1.0"
   }
 }

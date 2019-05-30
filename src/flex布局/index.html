@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex布局</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+
+        }
+        .wrap {
+            display: flex;
+        }
+        [class*="demo"] {
+            width: 100px;
+            height: 100px;
+            padding: 4px;
+            margin: 15px;
+            background-color: #e7e7e7;
+            object-fit: contain;
+            box-shadow:
+                    inset 0 5px white,
+                    inset 0 -5px #bbb,
+                    inset 5px 0 #d7d7d7,
+                    inset -5px 0 #d7d7d7;
+
+            border-radius: 10%;
+        }
+        .pipe {
+            height: 24px;
+            width: 24px;
+            margin: 4px;
+            border-radius: 50%;
+            background-color: #333;
+            box-shadow: inset 0 3px #111, inset 0 -3px #555;
+        }
+        .demo1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .demo2 {
+            display: flex;
+            justify-content: space-between;
+        }
+        .demo2 .pipe:nth-of-type(2) {
+            align-self: flex-end;
+        }
+        .demo3 {
+            display: flex;
+        }
+        .demo3 .pipe:nth-of-type(2) {
+            align-self: center;
+        }
+        .demo3 .pipe:nth-of-type(3) {
+            align-self: flex-end;
+        }
+        .demo4 {
+            display: flex;
+        }
+        .demo4 .column {
+            justify-content: space-between;
+            display: flex;
+            /*align-content: center;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="demo1">
+            <div class="pipe"></div>
+        </div>
+        <div class="demo2">
+            <div class="pipe"></div>
+            <div class="pipe"></div>
+        </div>
+        <div class="demo3">
+            <div class="pipe"></div>
+            <div class="pipe"></div>
+            <div class="pipe"></div>
+        </div>
+        <div class="demo4">
+            <div class="column">
+                <div class="pipe"></div>
+                <div class="pipe"></div>
+            </div>
+            <!--<div class="column">-->
+                <!--<div class="pipe"></div>-->
+                <!--<div class="pipe"></div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</body>
+</html>

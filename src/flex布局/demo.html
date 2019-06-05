@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #container {
+            width: 200px;
+            display: flex;
+            border: 1px solid yellow;
+
+        }
+        .a {
+            width: 50px;
+            flex-grow: 0;
+        }
+        .b {
+            width: 100px;
+            flex-grow: 0;
+        }
+        .c {
+            width: 120px;
+        }
+
+        #container1 {
+            width: 300px;
+            background: yellow;
+            display: flex;
+        }
+        .a1 {
+            width: 120px;
+        }
+        .a11 {
+            width: 160px;
+        }
+        .flexShrink {
+            background-color: #009900;
+            width: 300px;
+            display: flex;
+            /*flex-wrap: wrap;*/
+            flex-direction: row;
+        }
+        .A {
+            width: 120px;
+        }
+        .B {
+            width: 160px;
+            flex-shrink: 0;
+        }
+        .C {
+            width: 120px;
+        }
+        .flexBasic {
+            display: flex;
+            flex-direction: column;
+        }
+        .flexBasicA {
+            flex-basis: auto;
+            height: 50px;
+        }
+        .flexBasicB {
+            width: 100px;
+            flex-basis: 60px;
+        }
+        .flexAlgin {
+            width: 500px;
+            display: flex;
+            background-color: #2196f3;
+            height: 300px;
+        }
+        .flexAlginA {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #c1c1c1;
+        }
+        .flexAlginB {
+            width: 120px;
+            height: 120px;
+            border: 1px solid #c1c1c1;
+        }
+        .flexAlginC {
+            width: 160px;
+            height: 160px;
+            border: 1px solid #c1c1c1;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="a">a</div>
+        <div class="b">b</div>
+        <!--<div class="c">c</div>-->
+    </div>
+    <div id="container1">
+        <div class="a1">a</div>
+        <div class="a11">a</div>
+        <div class="a1">a</div>
+    </div>
+    <div class="flexShrink">
+        <div class="A">b</div>
+        <div class="B">b</div>
+        <div class="C">b</div>
+    </div>
+    <div class="flexBasic">
+        <div class="flexBasicA">11111</div>
+        <div class="flexBasicB">88888</div>
+    </div>
+
+    <div class="flexAlgin">
+        <div class="flexAlginA">flexAlginA</div>
+        <div class="flexAlginB">flexAlginB</div>
+        <div class="flexAlginC">flexAlginC</div>
+    </div>
+    <strong><em><a href="https://www.cnblogs.com/qcloud1001/p/9848619.html" target="_blank">详见地址</a></em></strong>
+</body>
+</html>
